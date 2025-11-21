@@ -1,7 +1,7 @@
 {
   "name": "mhchmi",
   "version": "1.0.0",
-  "description": "This project will serve the purpose to hold the manual test cases for the Coin Market Cap page and also the Automation Testing steps based on the document.",
+  "description": "This project will serve the purpose to automate the CMC website for it's key important features.",
   "homepage": "https://github.com/jwloqwe/MHCHMI#readme",
   "bugs": {
     "url": "https://github.com/jwloqwe/MHCHMI/issues"
