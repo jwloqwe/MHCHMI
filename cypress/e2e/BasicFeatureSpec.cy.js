@@ -17,7 +17,7 @@ describe('Search and Filter Features', () => {
     launchVerify();
     // Open up the Search Modal
     openSearch();
-    cy.get('input[placeholder="What are you looking for?"]').type('Bitcoin{enter}');
+    cy.get('input[placeholder="What are you looking for?"]').type('Bitcoin');
     // This ensures that the search API is called with the correct query parameter
     const searchedValue = { q: 'Bitcoin' };
     cy.intercept(getCryptoSearch(searchedValue)).as('getSearchedCypto');
@@ -28,6 +28,16 @@ describe('Search and Filter Features', () => {
     cy.url().should('eq', 'https://coinmarketcap.com/currencies/bitcoin/');
     cy.wait('@currencyPageLoad');
     cy.contains('[data-role="coin-name"]', 'Bitcoin', { timeout: 10000 });
+  });
+
+  it('Verify the search results', () => {
+    launchVerify();
+    openSearch();
+    cy.get('input[placeholder="What are you looking for?"]').type('Bitcoin');
+    const searchedValue = { q: 'Bitcoin' };
+    cy.intercept(getCryptoSearch(searchedValue)).as('getSearchedCypto');
+    cy.wait('@getSearchedCypto');
+    cy.contains('[class^="SearchCryptoRow_container"]', 'Bitcoin')
   });
 
   it('Verify Basic Display of Data on UI', () => {
